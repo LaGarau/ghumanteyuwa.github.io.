@@ -5,25 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ghumante Yuwa</title>
     <style>
+        /* Font definition */
         @font-face {
             font-family: 'Droid 1997';
             src: url('assets/Droid 1997.otf') format('opentype');
         }
 
+        /* Global Styles */
         body {
+            margin: 0;
+            font-family: 'Droid 1997', sans-serif; /* Set font family globally */
+            font-size: 10%;
+            height: 100vh; /* Full viewport height */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Droid 1997', sans-serif; /* Set font family globally */
-            font-size: 150%;
+            position: relative;
         }
 
+        /* Headings */
         h1, h2 {
             text-align: center;
-            font-family: 'Droid 1997', sans-serif; /* Apply font family to h1 and h2 */
+            font-size: 3vw;
         }
 
         .footer-text {
@@ -42,23 +46,23 @@
             height: auto:
         }
 
-        .footer-text img, .logo img {
-            max-width: 100%;
-            height: auto;
+        img {
+            width: 100%; /* Scale to 100% of the container */
+            height: auto; /* Maintain aspect ratio */
         }
-
     </style>
 </head>
 <body>
-    <div class="logo">
+
+    <div class="ghumateyuwalogo">
         <img src="assets/ghumanteyuwalogo.png" alt="programlogo">
     </div>
-
     <h1>Coming to Life</h1>
     <h2>BY</h2>
 
-    <div class="footer-text">
+    <div class="lagaraulogo">
         <img src="assets/lagarau.png" alt="logo">
     </div>
+
 </body>
 </html>
