@@ -3,136 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghumante Yuwa - A New Adventure Awaits</title>
+    <title>Ghumante Yuwa - Your Ultimate Kathmandu Adventure</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <style>
-        /* Resetting default styles */
-        body, h1, h2, p, ul, li, button {
-            margin: 0;
-            padding: 0;
+        :root {
+            --primary-red: #ff0000;
+            --secondary-red: #ff4d4d;
         }
-
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Arial', sans-serif;
+            scroll-behavior: smooth;
         }
-
-        header {
-            background-color: #060000;
-            color: white;
-            text-align: center;
-            padding: 30px;
+        .bg-gradient-custom {
+            background: linear-gradient(to bottom right, var(--primary-red), var(--secondary-red));
         }
-
-        header h1 {
-            font-size: 2.5em;
+        .loader {
+            border-top-color: white;
+            animation: spin 1s linear infinite;
         }
-
-        header p {
-            font-size: 1.2em;
-            margin-top: 10px;
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
-
-        section {
-            padding: 40px 20px;
-            max-width: 900px;
-            margin: 0 auto;
-            background-color: white;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        .modal {
+            background: rgba(0,0,0,0.5);
         }
-
-        section h2 {
-            font-size: 1.8em;
-            color: #ff0000;
-            margin-bottom: 15px;
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
         }
-
-        section p {
-            font-size: 1.1em;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .tease p {
-            font-style: italic;
-            color: #666;
-        }
-
-        .get-involved ul {
-            list-style-type: disc;
-            margin-left: 20px;
-        }
-
-        .call-to-action button {
-            background-color: #ff0000;
-            color: white;
-            font-size: 1.2em;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            transition: background-color 0.3s ease;
-        }
-
-        .call-to-action button:hover {
-            background-color: #ff0000;
-        }
-
-        footer {
-            text-align: center;
-            background-color: #ff0000;
-            color: white;
-            padding: 20px;
-            font-size: 0.9em;
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
         }
     </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col bg-gray-50">
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed top-4 right-4 z-50 hidden">
+        <div class="bg-red-500 text-white px-6 py-4 rounded-lg shadow-2xl transform transition-all"></div>
+    </div>
 
-    <header>
-        <h1>Welcome to Ghumante Yuwa</h1>
-        <p>Are you ready for an unforgettable journey through Kathmandu?</p>
+    <!-- Header -->
+    <header class="bg-gradient-custom text-white text-center py-16 px-4">
+        <h1 class="text-5xl font-bold mb-4 tracking-tight">Ghumante Yuwa</h1>
+        <p class="text-2xl opacity-90">Your Ultimate Kathmandu Adventure Awaits</p>
     </header>
 
-    <section class="intro">
-        <h2>What is Ghumante Yuwa?</h2>
-        <p>Ghumante Yuwa is more than just an adventure—it’s a journey of discovery, challenge, and exploration. A one-of-a-kind experience where you’ll uncover secrets, take on exciting tasks, and discover hidden gems in the heart of Kathmandu. But that’s just the beginning. What awaits you is an experience that blends learning, fun, and connection to the vibrant local culture. Are you ready to get involved?</p>
-    </section>
+    <!-- Main Content -->
+    <main class="bg-white shadow-2xl rounded-t-3xl flex-grow p-8 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-red-600 mb-6">Your Gateway to Adventure</h2>
+            
+            <div class="bg-red-50 p-8 rounded-xl shadow-lg mb-8">
+                <h3 class="text-2xl font-semibold text-red-700 mb-4">Complete Ghumante Yuwa Guide</h3>
+                <p class="text-gray-700 mb-6">
+                    Unlock the secrets of Kathmandu with our comprehensive digital guide, packed with insider tips, hidden routes, and exciting challenges.
+                </p>
+                
+                <div class="flex justify-center space-x-4">
+                    <button 
+                        id="downloadBtn"
+                        class="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors flex items-center space-x-3 relative"
+                    >
+                        <i data-feather="download" class="mr-2"></i>
+                        <span id="downloadText">Download PDF Guide</span>
+                        <span id="downloadLoader" class="hidden absolute right-2 top-1/2 transform -translate-y-1/2 w-5 h-5 border-4 rounded-full loader"></span>
+                    </button>
 
-    <section class="tease">
-        <h2>The Mystery Awaits</h2>
-        <p>Ghumante Yuwa is built on surprises. Each twist, turn, and challenge is designed to keep you engaged and learning about your surroundings. You’ll unlock clues, meet amazing people, and maybe even solve a few mysteries along the way. But the true reward? That’s something you’ll have to experience for yourself.</p>
-    </section>
+                    <button 
+                        id="viewPdfBtn"
+                        class="bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors flex items-center space-x-3"
+                    >
+                        <i data-feather="eye" class="mr-2"></i>
+                        View PDF
+                    </button>
+                </div>
+            </div>
 
-    <section class="how-it-works">
-        <h2>How Does it Work?</h2>
-        <p>It’s simple, but we’re keeping the rest under wraps. What we can tell you is that the experience is tailored to spark curiosity and provide plenty of opportunities to connect with the heart of Kathmandu. Are you intrigued yet?</p>
-        <p>Trust us—you don’t want to miss out on this.</p>
-    </section>
+            <!-- PDF Viewer Modal -->
+            <div 
+                id="pdfModal"
+                class="fixed inset-0 z-50 hidden items-center justify-center modal"
+            >
+                <div class="bg-white w-11/12 max-w-4xl h-5/6 rounded-xl shadow-2xl flex flex-col">
+                    <div class="p-4 bg-red-600 text-white flex justify-between items-center rounded-t-xl">
+                        <h3 class="font-semibold text-lg">Ghumante Yuwa Guide</h3>
+                        <button 
+                            id="closePdfBtn"
+                            class="text-white hover:bg-red-700 p-2 rounded transition"
+                        >
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+                    <iframe 
+                        id="pdfFrame"
+                        src="" 
+                        class="flex-grow w-full border-none"
+                        title="Ghumante Yuwa Guide"
+                    ></iframe>
+                </div>
+            </div>
 
-    <section class="get-involved">
-        <h2>Why Should You Join?</h2>
-        <ul>
-            <li>Explore the city like never before, uncovering places you’ve never seen.</li>
-            <li>Challenge yourself, your friends, and your sense of adventure.</li>
-            <li>Support local businesses and become part of something bigger.</li>
-        </ul>
-        <p>Still curious? Get ready to see what’s around the next corner.</p>
-    </section>
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-2 gap-6 mt-10">
+                <div class="bg-gray-100 p-6 rounded-xl text-center transform transition hover:scale-105">
+                    <i data-feather="map-pin" class="mx-auto text-red-600 mb-4 w-12 h-12"></i>
+                    <h4 class="font-bold text-xl mb-2">Explore Kathmandu</h4>
+                    <p class="text-gray-700">
+                        Discover hidden gems and secret locations throughout the city.
+                    </p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center transform transition hover:scale-105">
+                    <i data-feather="compass" class="mx-auto text-red-600 mb-4 w-12 h-12"></i>
+                    <h4 class="font-bold text-xl mb-2">Adventure Challenges</h4>
+                    <p class="text-gray-700">
+                        Engage in unique tasks that test your wit and creativity.
+                    </p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center transform transition hover:scale-105">
+                    <i data-feather="users" class="mx-auto text-red-600 mb-4 w-12 h-12"></i>
+                    <h4 class="font-bold text-xl mb-2">Community Experience</h4>
+                    <p class="text-gray-700">
+                        Connect with local culture and fellow adventurers.
+                    </p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center transform transition hover:scale-105">
+                    <i data-feather="compass" class="mx-auto text-red-600 mb-4 w-12 h-12"></i>
+                    <h4 class="font-bold text-xl mb-2">Tailored Journey</h4>
+                    <p class="text-gray-700">
+                        A personalized adventure that adapts to your interests.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <section class="call-to-action">
-        <h2>Are You Ready to Begin?</h2>
-        <p>Ghumante Yuwa is calling. Will you answer?</p>
-        <button onclick="window.location.href='index.html'">Join the Adventure</button>
-    </section>
-
-    <footer>
+    <!-- Footer -->
+    <footer class="bg-red-700 text-white py-4 text-center">
         <p>&copy; 2025 Ghumante Yuwa | Designed by La Garau</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Feather Icons
+            feather.replace();
+
+            // DOM Elements
+            const downloadBtn = document.getElementById('downloadBtn');
+            const downloadText = document.getElementById('downloadText');
+            const downloadLoader = document.getElementById('downloadLoader');
+            const viewPdfBtn = document.getElementById('viewPdfBtn');
+            const pdfModal = document.getElementById('pdfModal');
+            const pdfFrame = document.getElementById('pdfFrame');
+            const closePdfBtn = document.getElementById('closePdfBtn');
+            const toast = document.getElementById('toast');
+
+            // Show Toast Notification
+            function showToast(message, type = 'success') {
+                const toastElement = toast.querySelector('div');
+                toastElement.textContent = message;
+                toastElement.className = `bg-${type === 'success' ? 'green' : 'red'}-500 text-white px-6 py-4 rounded-lg shadow-2xl transform transition-all`;
+                toast.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 3000);
+            }
+
+            // Download PDF
+            downloadBtn.addEventListener('click', () => {
+                downloadText.classList.add('invisible');
+                downloadLoader.classList.remove('hidden');
+
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.href = 'Base.pdf';
+                    link.download = 'Request From La Garau.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    downloadText.classList.remove('invisible');
+                    downloadLoader.classList.add('hidden');
+                    
+                    showToast('PDF Download Started!');
+                }, 1500);
+            });
+
+            // View PDF
+            viewPdfBtn.addEventListener('click', () => {
+                pdfFrame.src = 'Base.pdf';
+                pdfModal.classList.remove('hidden');
+                pdfModal.classList.add('flex');
+            });
+
+            // Close PDF Modal
+            closePdfBtn.addEventListener('click', () => {
+                pdfModal.classList.add('hidden');
+                pdfModal.classList.remove('flex');
+                pdfFrame.src = '';
+            });
+
+            // Close modal if clicking outside
+            pdfModal.addEventListener('click', (e) => {
+                if (e.target === pdfModal) {
+                    pdfModal.classList.add('hidden');
+                    pdfModal.classList.remove('flex');
+                    pdfFrame.src = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
