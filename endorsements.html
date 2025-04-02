@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghumante Yuwa - Partner Endorsements</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        :root {
+            --primary-red: #ff0000;
+            --secondary-red: #ff4d4d;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .bg-gradient-custom {
+            background: linear-gradient(to bottom right, var(--primary-red), var(--secondary-red));
+        }
+        .partner-logo {
+            transition: all 0.3s ease;
+        }
+        .partner-logo:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .modal {
+            background: rgba(0,0,0,0.5);
+        }
+        .loader {
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50">
+    <!-- Header -->
+    <header class="bg-gradient-custom text-white text-center py-12 px-4">
+        <h1 class="text-4xl font-bold mb-2 tracking-tight">Organization Endorsements</h1>
+        <p class="text-xl opacity-90">Trusted by companies to start making impact</p>
+        <a href="index.html" class="inline-flex items-center mt-6 text-white hover:underline">
+            <i data-feather="arrow-left" class="mr-2"></i>
+            Back to Homepage
+        </a>
+    </header>
+
+    <!-- Main Content -->
+    <main class="bg-white shadow-2xl rounded-t-3xl flex-grow p-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-red-600 mb-10 text-center">Click to view their endorsement</h2>
+            
+            <!-- Partner Logos Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <!-- Each logo is a clickable element -->
+                <div 
+                    class="partner-logo bg-white rounded-xl shadow-lg p-6 flex flex-col items-center justify-center cursor-pointer"
+                    data-pdf="NepalTourismBoard'sEndorsement.pdf"
+                    data-name="Nepal Adventure Tours"
+                >
+                    <div class="h-24 w-24 rounded-full bg-red-100 flex items-center justify-center mb-4">
+                        <i data-feather="compass" class="text-red-600 w-12 h-12"></i>
+                    </div>
+                    <h3 class="font-bold text-lg text-center">Nepal Tourism Board</h3>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- PDF Viewer Modal -->
+    <div 
+        id="endorsementModal"
+        class="fixed inset-0 z-50 hidden items-center justify-center modal"
+    >
+        <div class="bg-white w-11/12 max-w-4xl h-5/6 rounded-xl shadow-2xl flex flex-col">
+            <div class="p-4 bg-red-600 text-white flex justify-between items-center rounded-t-xl">
+                <h3 id="modalTitle" class="font-semibold text-lg">Partner Endorsement</h3>
+                <button 
+                    id="closeEndorsementBtn"
+                    class="text-white hover:bg-red-700 p-2 rounded transition"
+                >
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="relative flex-grow">
+                <div id="pdfLoader" class="absolute inset-0 flex items-center justify-center bg-white">
+                    <div class="w-12 h-12 border-4 border-red-600 rounded-full loader"></div>
+                </div>
+                <iframe 
+                    id="endorsementFrame"
+                    src="" 
+                    class="w-full h-full border-none"
+                    title="Partner Endorsement"
+                    onload="document.getElementById('pdfLoader').style.display='none';"
+                ></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-red-700 text-white py-4 text-center">
+        <p>&copy; 2025 Ghumante Yuwa | Designed by La Garau</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize Feather Icons
+            feather.replace();
+
+            // DOM Elements
+            const partnerLogos = document.querySelectorAll('.partner-logo');
+            const endorsementModal = document.getElementById('endorsementModal');
+            const endorsementFrame = document.getElementById('endorsementFrame');
+            const modalTitle = document.getElementById('modalTitle');
+            const closeEndorsementBtn = document.getElementById('closeEndorsementBtn');
+            const pdfLoader = document.getElementById('pdfLoader');
+
+            // Setup click handlers for each partner logo
+            partnerLogos.forEach(logo => {
+                logo.addEventListener('click', () => {
+                    const pdfPath = logo.getAttribute('data-pdf');
+                    const partnerName = logo.getAttribute('data-name');
+                    
+                    // Set modal title and prepare loading indicator
+                    modalTitle.textContent = `${partnerName} Endorsement`;
+                    pdfLoader.style.display = 'flex';
+                    
+                    // Set iframe source and show modal
+                    endorsementFrame.src = pdfPath;
+                    endorsementModal.classList.remove('hidden');
+                    endorsementModal.classList.add('flex');
+                });
+            });
+
+            // Close modal
+            closeEndorsementBtn.addEventListener('click', () => {
+                endorsementModal.classList.add('hidden');
+                endorsementModal.classList.remove('flex');
+                setTimeout(() => {
+                    endorsementFrame.src = '';
+                }, 300);
+            });
+
+            // Close modal if clicking outside
+            endorsementModal.addEventListener('click', (e) => {
+                if (e.target === endorsementModal) {
+                    endorsementModal.classList.add('hidden');
+                    endorsementModal.classList.remove('flex');
+                    setTimeout(() => {
+                        endorsementFrame.src = '';
+                    }, 300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
