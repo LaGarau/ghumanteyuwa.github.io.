@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +63,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             opacity: 0;
             animation: speechFade 6s ease-in-out infinite;
+            backdrop-filter: blur(5px);
         }
 
         .mascot-speech::after {
@@ -83,17 +85,17 @@
         }
 
         @keyframes speechFade {
-            0%, 100% { opacity: 0; }
-            20%, 80% { opacity: 1; }
+            0%, 100% { opacity: 0; transform: translateY(5px); }
+            20%, 80% { opacity: 1; transform: translateY(0); }
         }
 
         .phone-container {
             width: min(95vw, 400px);
             height: min(95vh, 800px);
-            background: #000000;
+            background: linear-gradient(145deg, #000000, #1a1a1a);
             border-radius: 30px;
             padding: 8px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 2px 5px rgba(255,255,255,0.1);
             position: relative;
             transition: all 0.3s ease;
         }
@@ -113,16 +115,17 @@
             flex-direction: column;
             height: 100%;
             position: relative;
-            background: #ffffff;
+            background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
         }
 
         .header {
-            background: linear-gradient(135deg, #dc2626, #000000);
+            background: linear-gradient(135deg, #dc2626 0%, #7c2d12 50%, #000000 100%);
             color: white;
             padding: 48px 16px 16px;
             text-align: center;
             position: relative;
-            border-bottom: 3px solid #dc2626;
+            border-bottom: 4px solid #dc2626;
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.3);
         }
 
         .header-logo {
@@ -135,6 +138,8 @@
             display: inline-block;
             vertical-align: middle;
             margin-right: 12px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .header h1 {
@@ -143,41 +148,57 @@
             letter-spacing: 2px;
             display: inline-block;
             vertical-align: middle;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
         }
 
         .header p {
             font-size: 14px;
             opacity: 0.9;
             margin-bottom: 16px;
+            letter-spacing: 1px;
         }
 
         .stats-bar {
             display: flex;
             justify-content: space-around;
-            background: rgba(0, 0, 0, 0.8);
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(20,20,20,0.8));
             backdrop-filter: blur(10px);
             margin: 16px;
             padding: 16px;
             border-radius: 20px;
-            border: 2px solid #dc2626;
+            border: 2px solid rgba(220, 38, 38, 0.6);
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stats-bar:hover {
+            transform: scale(1.02);
         }
 
         .stat {
             text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .stat:hover {
+            transform: scale(1.1);
         }
 
         .stat-number {
             font-size: 20px;
             font-weight: 700;
-            color: #dc2626;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .stat-label {
             font-size: 12px;
             opacity: 0.9;
             color: white;
+            letter-spacing: 0.5px;
         }
 
         .map-container {
@@ -185,17 +206,26 @@
             background: #f5f5f5;
             position: relative;
             overflow: hidden;
-            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800"><rect fill="%23f0f0f0" width="1000" height="800"/><path fill="%23e0e0e0" d="M0 200 L1000 200 L1000 220 L0 220 Z"/><path fill="%23e0e0e0" d="M0 400 L1000 400 L1000 420 L0 420 Z"/><path fill="%23e0e0e0" d="M0 600 L1000 600 L1000 620 L0 620 Z"/><path fill="%23e0e0e0" d="M200 0 L220 0 L220 800 L200 800 Z"/><path fill="%23e0e0e0" d="M500 0 L520 0 L520 800 L500 800 Z"/><path fill="%23e0e0e0" d="M800 0 L820 0 L820 800 L800 800 Z"/><circle fill="%23dc2626" cx="300" cy="150" r="8"/><circle fill="%23dc2626" cx="700" cy="250" r="8"/><circle fill="%23dc2626" cx="200" cy="450" r="8"/><circle fill="%23dc2626" cx="600" cy="350" r="8"/><circle fill="%23dc2626" cx="400" cy="550" r="8"/><text x="300" y="180" text-anchor="middle" font-size="12" fill="%23333">Thamel</text><text x="700" y="280" text-anchor="middle" font-size="12" fill="%23333">Durbar Square</text><text x="200" y="480" text-anchor="middle" font-size="12" fill="%23333">Swayambhu</text><text x="600" y="380" text-anchor="middle" font-size="12" fill="%23333">Patan</text><text x="400" y="580" text-anchor="middle" font-size="12" fill="%23333">Boudha</text></svg>');
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800"><defs><linearGradient id="mapGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%231e293b;stop-opacity:1" /><stop offset="100%" style="stop-color:%23334155;stop-opacity:1" /></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="2" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><rect fill="url(%23mapGrad)" width="1000" height="800"/><path fill="none" stroke="%23475569" stroke-width="2" d="M100 300 Q300 200 500 300 T900 300 M200 500 Q400 400 600 500 T900 500"/><path fill="none" stroke="%23475569" stroke-width="1" opacity="0.3" d="M0 200 L1000 200 M0 400 L1000 400 M0 600 L1000 600 M200 0 L200 800 M500 0 L500 800 M800 0 L800 800"/><g filter="url(%23glow)"><circle fill="%23dc2626" cx="300" cy="150" r="10"><animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/></circle><circle fill="%23dc2626" cx="700" cy="250" r="10"><animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/></circle><circle fill="%23dc2626" cx="200" cy="450" r="10"><animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/></circle><circle fill="%23dc2626" cx="600" cy="350" r="10"><animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/></circle><circle fill="%23dc2626" cx="400" cy="550" r="10"><animate attributeName="r" values="10;12;10" dur="2s" repeatCount="indefinite"/></circle></g><g fill="%23e2e8f0" font-size="12" text-anchor="middle" font-family="Orbitron, sans-serif"><text x="300" y="180">Thamel</text><text x="700" y="280">Durbar Square</text><text x="200" y="480">Swayambhu</text><text x="600" y="380">Patan</text><text x="400" y="580">Boudha</text></g></svg>');
             background-size: cover;
             background-position: center;
         }
+
+        /* Commented out: Real map image implementation */
+        /*
+        .map-container {
+            background-image: url('./assets/kathmandu-map.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        */
 
         /* QR Pokestops */
         .qr-mascot {
             position: absolute;
             width: 60px;
             height: 60px;
-            background: #dc2626;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
             border: 3px solid white;
             border-radius: 50%;
             display: flex;
@@ -209,8 +239,9 @@
         }
 
         .qr-mascot:hover {
-            transform: scale(1.2);
+            transform: scale(1.2) translateY(-5px);
             box-shadow: 0 8px 28px rgba(220, 38, 38, 0.5);
+            border-color: #ffffff;
         }
 
         .qr-mascot:nth-child(1) { top: 15%; left: 20%; animation-delay: -1s; }
@@ -234,6 +265,7 @@
             font-size: 24px;
             color: white;
             font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         /* User Avatar */
@@ -244,11 +276,20 @@
             transform: translateX(-50%);
             width: 30px;
             height: 30px;
-            background: #dc2626;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
             border: 3px solid white;
             border-radius: 50%;
             z-index: 60;
             animation: userPulse 3s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        .user-avatar::before {
+            content: '👤';
         }
 
         @keyframes userPulse {
@@ -264,15 +305,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
             display: none;
             justify-content: center;
             align-items: center;
             z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         .popup {
-            background: white;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95));
             color: #333;
             border-radius: 24px;
             padding: 0;
@@ -286,6 +334,7 @@
             overflow: hidden;
             max-height: 90vh;
             overflow-y: auto;
+            backdrop-filter: blur(5px);
         }
 
         .popup.show {
@@ -295,11 +344,27 @@
         .popup-header {
             position: relative;
             height: 160px;
-            background: linear-gradient(135deg, #dc2626, #000000);
+            background: linear-gradient(135deg, #dc2626 0%, #7c2d12 50%, #000000 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
+        }
+
+        .popup-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="30" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>');
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .popup-icon {
@@ -308,6 +373,12 @@
             z-index: 10;
             position: relative;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .popup-content {
@@ -316,24 +387,27 @@
 
         .popup h3 {
             font-size: 20px;
-            color: #dc2626;
+            background: linear-gradient(135deg, #dc2626, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
             font-weight: 700;
         }
 
         .popup-subtitle {
             font-size: 14px;
-            color: #666;
+            color: #64748b;
             margin-bottom: 16px;
             font-style: italic;
         }
 
         .popup-description {
-            color: #333;
+            color: #475569;
             margin-bottom: 16px;
             line-height: 1.6;
             text-align: left;
             font-size: 14px;
+            font-weight: 500;
         }
 
         /* QR Scanner */
@@ -353,20 +427,22 @@
             position: absolute;
             width: 100%;
             height: 3px;
-            background: #dc2626;
-            animation: scan 2s linear infinite;
-            box-shadow: 0 0 10px #dc2626;
+            background: linear-gradient(90deg, transparent, #dc2626, transparent);
+            animation: scan 2s ease-in-out infinite;
+            box-shadow: 0 0 15px #dc2626;
         }
 
         @keyframes scan {
-            0% { top: 0; }
-            100% { top: 100%; }
+            0% { top: 0; opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { top: calc(100% - 3px); opacity: 1; }
         }
 
         #qr-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 12px;
         }
 
         /* Rewards Section */
@@ -378,16 +454,25 @@
             margin: 16px 0;
             box-shadow: 0 4px 16px rgba(220, 38, 38, 0.3);
             display: none;
+            border: 2px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(5px);
         }
 
         .rewards-section.show {
             display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
         }
 
         .rewards-title {
             font-weight: 700;
             margin-bottom: 12px;
             font-size: 16px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
         .reward-item {
@@ -396,6 +481,10 @@
             gap: 12px;
             margin-bottom: 8px;
             font-size: 14px;
+            font-weight: 600;
+            padding: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
         }
 
         .reward-icon {
@@ -419,10 +508,12 @@
             transition: all 0.3s ease;
             font-size: 14px;
             font-family: 'Droid 1997', monospace;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .scan-btn {
-            background: #dc2626;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
             color: white;
         }
 
@@ -432,13 +523,15 @@
         }
 
         .scan-btn:hover {
-            background: #b91c1c;
+            background: linear-gradient(135deg, #b91c1c, #991b1b);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
         }
 
         .close-btn:hover {
             background: #f5f5f5;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         /* Toast */
@@ -447,7 +540,7 @@
             top: 24px;
             left: 50%;
             transform: translateX(-50%);
-            background: #dc2626;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
             color: white;
             padding: 16px 24px;
             border-radius: 20px;
@@ -458,6 +551,7 @@
             border: 2px solid white;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
             font-family: 'Droid 1997', monospace;
+            backdrop-filter: blur(5px);
         }
 
         .toast.show {
@@ -530,7 +624,6 @@
             <!-- Main App Screen -->
             <div class="main-screen">
                 <div class="header">
-                    <div class="header-logo"></div>
                     <h1>GHUMANTE YUWA</h1>
                     <p>Discover Kathmandu Valley</p>
                     
@@ -555,19 +648,15 @@
                     <div class="qr-mascot" onclick="showPopup('temple')" data-qr="1">
                         <div class="qr-icon">🏛️</div>
                     </div>
-                    
                     <div class="qr-mascot" onclick="showPopup('palace')" data-qr="2">
                         <div class="qr-icon">👑</div>
                     </div>
-                    
                     <div class="qr-mascot" onclick="showPopup('monkey')" data-qr="3">
                         <div class="qr-icon">🐒</div>
                     </div>
-                    
                     <div class="qr-mascot" onclick="showPopup('artisan')" data-qr="4">
                         <div class="qr-icon">🎨</div>
                     </div>
-                    
                     <div class="qr-mascot" onclick="showPopup('stupa')" data-qr="5">
                         <div class="qr-icon">☸️</div>
                     </div>
@@ -628,11 +717,41 @@
     <script>
         // Location data
         const locations = {
-            temple: { title: 'Pashupatinath Temple', icon: '🏛️', tokens: 50 },
-            palace: { title: 'Hanuman Dhoka Palace', icon: '👑', tokens: 75 },
-            monkey: { title: 'Swayambhunath Stupa', icon: '🐒', tokens: 60 },
-            artisan: { title: 'Patan Durbar Square', icon: '🎨', tokens: 65 },
-            stupa: { title: 'Boudhanath Stupa', icon: '☸️', tokens: 80 }
+            temple: { 
+                title: 'Pashupatinath Temple', 
+                icon: '🏛️', 
+                tokens: 50,
+                description: 'A sacred Hindu temple complex on the banks of the Bagmati River.',
+                qrCode: 'pashupati_1'
+            },
+            palace: { 
+                title: 'Hanuman Dhoka Palace', 
+                icon: '👑', 
+                tokens: 75,
+                description: 'A historic palace and UNESCO World Heritage Site in Kathmandu.',
+                qrCode: 'hanuman_2'
+            },
+            monkey: { 
+                title: 'Swayambhunath Stupa', 
+                icon: '🐒', 
+                tokens: 60,
+                description: 'The Monkey Temple, a spiritual site with panoramic views.',
+                qrCode: 'swayambhu_3'
+            },
+            artisan: { 
+                title: 'Patan Durbar Square', 
+                icon: '🎨', 
+                tokens: 65,
+                description: 'A center of Newari art and architecture.',
+                qrCode: 'patan_4'
+            },
+            stupa: { 
+                title: 'Boudhanath Stupa', 
+                icon: '☸️', 
+                tokens: 80,
+                description: 'One of the largest stupas in the world, a hub for Tibetan Buddhism.',
+                qrCode: 'boudha_5'
+            }
         };
 
         let currentTokens = 0;
@@ -648,14 +767,16 @@
             const popup = document.getElementById('popup');
             
             document.getElementById('popupTitle').textContent = 'Scan QR Code';
-            document.getElementById('popupSubtitle').textContent = 'Point your camera at the QR code';
-            document.getElementById('popupDescription').textContent = `Find and scan the QR code at ${currentLocation.title} to unlock exclusive content and rewards!`;
+            document.getElementById('popupSubtitle').textContent = currentLocation.title;
+            document.getElementById('popupDescription').textContent = currentLocation.description;
             document.getElementById('popupIcon').textContent = currentLocation.icon;
             document.getElementById('tokenReward').textContent = `+${currentLocation.tokens} Exploration Tokens`;
             
             document.getElementById('qrScanner').style.display = 'block';
             document.getElementById('rewardsSection').classList.remove('show');
             document.getElementById('scanBtn').textContent = 'START SCAN';
+            document.getElementById('scanBtn').disabled = false;
+            document.getElementById('scanBtn').onclick = startQRScan;
             
             document.getElementById('popupOverlay').style.display = 'flex';
             setTimeout(() => {
@@ -675,6 +796,9 @@
                 video.srcObject = qrStream;
                 scanBtn.textContent = 'SCANNING...';
                 scanBtn.disabled = true;
+                
+                // Simulate scanning sound
+                console.log('🎵 QR scanning sound effect played');
                 
                 qrScanInterval = setInterval(() => {
                     scanQRCode(video);
@@ -703,9 +827,8 @@
                 const qrData = code.data;
                 console.log('QR Code detected:', qrData);
                 
-                if (/^[1-5]$/.test(qrData)) {
-                    const qrNumber = parseInt(qrData);
-                    handleQRSuccess(qrNumber);
+                if (qrData === currentLocation.qrCode) {
+                    handleQRSuccess(currentLocation.qrCode.split('_')[1]);
                 } else {
                     showToast('⚠️ Invalid QR code for this location');
                 }
@@ -747,7 +870,10 @@
             document.getElementById('scanBtn').disabled = false;
             document.getElementById('scanBtn').onclick = collectRewards;
             
-            showToast(`🎉 QR Code ${qrNumber} scanned! +${currentLocation.tokens} tokens earned!`);
+            // Simulate reward sound
+            console.log('🎉 Reward unlock sound effect played');
+            
+            showToast(`🎉 Scanned ${currentLocation.title}! +${currentLocation.tokens} tokens earned!`);
         }
 
         function collectRewards() {
@@ -829,7 +955,12 @@
         document.addEventListener('keydown', function(e) {
             if (e.key >= '1' && e.key <= '5' && document.getElementById('popupOverlay').style.display === 'flex') {
                 const qrNumber = parseInt(e.key);
-                handleQRSuccess(qrNumber);
+                const expectedQr = currentLocation.qrCode.split('_')[1];
+                if (qrNumber === parseInt(expectedQr)) {
+                    handleQRSuccess(qrNumber);
+                } else {
+                    showToast('⚠️ Wrong QR code for this location');
+                }
             }
         });
 
