@@ -37,7 +37,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'public'  # Modify if your static content is elsewhere
+          path: 'webapp'  # Modify if your static content is elsewhere
 
       # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
