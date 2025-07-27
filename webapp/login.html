@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghumante Yuwa - Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+        @font-face {
+            font-family: 'Droid 1997';
+            src: url('./assets/droid1997.woff2') format('woff2'),
+                 url('./assets/droid1997.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Droid 1997', 'Orbitron', monospace, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b1b 50%, #1a1a1a 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Mascot */
+        .mascot {
+            position: fixed;
+            right: 2rem;
+            bottom: 0;
+            width: 120px;
+            height: 150px;
+            background-image: url('./assets/mascot.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            z-index: 2000;
+            animation: mascotBreathe 3s ease-in-out infinite;
+        }
+
+        .mascot-speech {
+            position: absolute;
+            top: -60px;
+            left: -80px;
+            background: rgba(220, 38, 38, 0.95);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            max-width: 140px;
+            text-align: center;
+            border: 2px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: speechFade 6s ease-in-out infinite;
+        }
+
+        .mascot-speech::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid rgba(220, 38, 38, 0.95);
+        }
+
+        @keyframes mascotBreathe {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes speechFade {
+            0%, 100% { opacity: 0; }
+            20%, 80% { opacity: 1; }
+        }
+
+        .phone-container {
+            width: min(95vw, 400px);
+            height: min(95vh, 800px);
+            background: #000000;
+            border-radius: 30px;
+            padding: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Login Screen */
+        .login-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background: linear-gradient(135deg, #dc2626 0%, #000000 50%, #ffffff 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            padding: 40px 24px;
+            text-align: center;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .app-logo {
+            width: 80px;
+            height: 80px;
+            background-image: url('./assets/logo.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin-bottom: 16px;
+            animation: logoPulse 2s ease-in-out infinite;
+        }
+
+        .app-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            letter-spacing: 2px;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .app-tagline {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 48px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .login-form {
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .phone-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #dc2626;
+            border-radius: 20px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+            font-family: 'Droid 1997', monospace;
+        }
+
+        .phone-input:focus {
+            border-color: #ffffff;
+            transform: scale(1.02);
+            outline: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: #dc2626;
+            color: white;
+            border: 2px solid white;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            font-family: 'Droid 1997', monospace;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+            background: #b91c1c;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #dc2626;
+            color: white;
+            padding: 16px 24px;
+            border-radius: 20px;
+            font-weight: 700;
+            z-index: 3000;
+            opacity: 0;
+            transition: all 0.3s ease;
+            border: 2px solid white;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+            font-family: 'Droid 1997', monospace;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(10px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+                overflow: auto;
+            }
+            
+            .phone-container {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+                padding: 0;
+                box-shadow: none;
+            }
+            
+            .screen {
+                border-radius: 0;
+            }
+
+            .mascot {
+                right: 1rem;
+                width: 80px;
+                height: 100px;
+            }
+
+            .mascot-speech {
+                font-size: 10px;
+                max-width: 100px;
+                top: -50px;
+                left: -60px;
+            }
+
+            .app-title {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .app-title {
+                font-size: 20px;
+            }
+            
+            .phone-input {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mascot -->
+    <div class="mascot">
+        <div class="mascot-speech">Ready to explore Nepal's hidden treasures?</div>
+    </div>
+
+    <div class="phone-container">
+        <div class="screen">
+            <!-- Login Screen -->
+            <div class="login-screen">
+                <div class="app-logo"></div>
+                <div class="app-title">GHUMANTE YUWA</div>
+                <div class="app-tagline">Explore Nepal like Pokémon GO</div>
+                
+                <div class="login-form">
+                    <input type="tel" class="phone-input" placeholder="Enter your phone number" id="phoneInput">
+                    <a href="main.html" class="login-btn">START ADVENTURE</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showToast(message) {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) {
+                existingToast.remove();
+            }
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 100);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 3000);
+        }
+
+        // Welcome animation on load
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                const mascotSpeech = document.querySelector('.mascot-speech');
+                if (mascotSpeech) {
+                    mascotSpeech.textContent = 'Welcome, explorer! Ready for adventure?';
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
