@@ -616,360 +616,353 @@
 <body>
     <!-- Mascot -->
     <div class="mascot">
-        <div class="mascot-speech">Discover Kathmandu!</div>
+      <div class="mascot-speech">Discover Kathmandu!</div>
     </div>
-
+  
     <div class="phone-container">
-        <div class="screen">
-            <!-- Main App Screen -->
-            <div class="main-screen">
-                <div class="header">
-                    <h1>GHUMANTE YUWA</h1>
-                    <p>Discover Kathmandu Valley</p>
-                    
-                    <div class="stats-bar">
-                        <div class="stat">
-                            <div class="stat-number" id="tokenCount">0</div>
-                            <div class="stat-label">Tokens</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number" id="qrCount">0</div>
-                            <div class="stat-label">QR Found</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-number" id="audioCount">0</div>
-                            <div class="stat-label">Stories</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="map-container">
-                    <!-- QR Code Pokestops -->
-                    <div class="qr-mascot" onclick="showPopup('temple')" data-qr="1">
-                        <div class="qr-icon">🏛️</div>
-                    </div>
-                    <div class="qr-mascot" onclick="showPopup('palace')" data-qr="2">
-                        <div class="qr-icon">👑</div>
-                    </div>
-                    <div class="qr-mascot" onclick="showPopup('monkey')" data-qr="3">
-                        <div class="qr-icon">🐒</div>
-                    </div>
-                    <div class="qr-mascot" onclick="showPopup('artisan')" data-qr="4">
-                        <div class="qr-icon">🎨</div>
-                    </div>
-                    <div class="qr-mascot" onclick="showPopup('stupa')" data-qr="5">
-                        <div class="qr-icon">☸️</div>
-                    </div>
-
-                    <!-- User Avatar -->
-                    <div class="user-avatar"></div>
-                </div>
+      <div class="screen">
+        <!-- Main App Screen -->
+        <div class="main-screen">
+          <div class="header">
+            <h1>GHUMANTE YUWA</h1>
+            <p>Discover Kathmandu Valley</p>
+  
+            <div class="stats-bar">
+              <div class="stat">
+                <div class="stat-number" id="tokenCount">0</div>
+                <div class="stat-label">Tokens</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number" id="qrCount">0</div>
+                <div class="stat-label">QR Found</div>
+              </div>
+              <div class="stat">
+                <div class="stat-number" id="audioCount">0</div>
+                <div class="stat-label">Stories</div>
+              </div>
             </div>
-
-            <!-- Popup -->
-            <div class="popup-overlay" id="popupOverlay">
-                <div class="popup" id="popup">
-                    <div class="popup-header">
-                        <div class="popup-icon" id="popupIcon">🏛️</div>
-                    </div>
-                    
-                    <div class="popup-content">
-                        <h3 id="popupTitle">Scan QR Code</h3>
-                        <div class="popup-subtitle" id="popupSubtitle">Point your camera at the QR code</div>
-                        <div class="popup-description" id="popupDescription">
-                            Find and scan the QR code at this location to unlock exclusive content and rewards!
-                        </div>
-
-                        <!-- QR Scanner -->
-                        <div class="qr-scanner" id="qrScanner">
-                            <video id="qr-video" autoplay muted playsinline></video>
-                            <div class="scanner-line"></div>
-                        </div>
-
-                        <!-- Rewards Section -->
-                        <div class="rewards-section" id="rewardsSection">
-                            <div class="rewards-title">🎁 Rewards Unlocked!</div>
-                            <div class="reward-item">
-                                <span class="reward-icon">🪙</span>
-                                <span id="tokenReward">+50 Exploration Tokens</span>
-                            </div>
-                            <div class="reward-item">
-                                <span class="reward-icon">🎧</span>
-                                <span>Audio Story Unlocked</span>
-                            </div>
-                            <div class="reward-item">
-                                <span class="reward-icon">🏆</span>
-                                <span>Explorer Badge Earned</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="popup-buttons">
-                        <button class="popup-btn scan-btn" onclick="startQRScan()" id="scanBtn">START SCAN</button>
-                        <button class="popup-btn close-btn" onclick="closePopup()">CLOSE</button>
-                    </div>
-                </div>
+          </div>
+  
+          <div class="map-container">
+            <!-- QR Code Pokestops -->
+            <div class="qr-mascot" onclick="showPopup('temple')" data-qr="1">
+              <div class="qr-icon">🏛️</div>
             </div>
+            <div class="qr-mascot" onclick="showPopup('palace')" data-qr="2">
+              <div class="qr-icon">👑</div>
+            </div>
+            <div class="qr-mascot" onclick="showPopup('monkey')" data-qr="3">
+              <div class="qr-icon">🐒</div>
+            </div>
+            <div class="qr-mascot" onclick="showPopup('artisan')" data-qr="4">
+              <div class="qr-icon">🎨</div>
+            </div>
+            <div class="qr-mascot" onclick="showPopup('stupa')" data-qr="5">
+              <div class="qr-icon">☸️</div>
+            </div>
+  
+            <!-- User Avatar -->
+            <div class="user-avatar"></div>
+          </div>
         </div>
+  
+        <!-- Popup -->
+        <div class="popup-overlay" id="popupOverlay">
+          <div class="popup" id="popup">
+            <div class="popup-header">
+              <div class="popup-icon" id="popupIcon">🏛️</div>
+            </div>
+  
+            <div class="popup-content">
+              <h3 id="popupTitle">Scan QR Code</h3>
+              <div class="popup-subtitle" id="popupSubtitle">Point your camera at the QR code</div>
+              <div class="popup-description" id="popupDescription">
+                Find and scan the QR code at this location to unlock exclusive content and rewards!
+              </div>
+  
+              <!-- QR Scanner -->
+              <div class="qr-scanner" id="qrScanner" style="width: 100%; height: 250px; border: 2px solid #333;"></div>
+  
+              <!-- Rewards Section -->
+              <div class="rewards-section" id="rewardsSection">
+                <div class="rewards-title">🎁 Rewards Unlocked!</div>
+                <div class="reward-item">
+                  <span class="reward-icon">🪙</span>
+                  <span id="tokenReward">+50 Exploration Tokens</span>
+                </div>
+                <div class="reward-item">
+                  <span class="reward-icon">🎧</span>
+                  <span>Audio Story Unlocked</span>
+                </div>
+                <div class="reward-item">
+                  <span class="reward-icon">🏆</span>
+                  <span>Explorer Badge Earned</span>
+                </div>
+              </div>
+            </div>
+  
+            <div class="popup-buttons" style="display:flex; gap:10px; justify-content:center; margin-top:15px;">
+              <button class="popup-btn scan-btn" onclick="startQRScan()" id="scanBtn">START SCAN</button>
+              <button class="popup-btn skip-btn" onclick="skipScan()">SKIP SCAN</button>
+              <button class="popup-btn close-btn" onclick="closePopup()">CLOSE</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsqr/1.4.0/jsQR.js"></script>
+  
+    <!-- QR Scanner Library -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  
     <script>
-        // Location data
-        const locations = {
-            temple: { 
-                title: 'Pashupatinath Temple', 
-                icon: '🏛️', 
-                tokens: 50,
-                description: 'A sacred Hindu temple complex on the banks of the Bagmati River.',
-                qrCode: 'pashupati_1'
+      const locations = {
+        temple: {
+          title: "Pashupatinath Temple",
+          icon: "🏛️",
+          tokens: 50,
+          description: "A sacred Hindu temple complex on the banks of the Bagmati River.",
+          qrCode: "pashupati_1",
+        },
+        palace: {
+          title: "Hanuman Dhoka Palace",
+          icon: "👑",
+          tokens: 75,
+          description: "A historic palace and UNESCO World Heritage Site in Kathmandu.",
+          qrCode: "hanuman_2",
+        },
+        monkey: {
+          title: "Swayambhunath Stupa",
+          icon: "🐒",
+          tokens: 60,
+          description: "The Monkey Temple, a spiritual site with panoramic views.",
+          qrCode: "swayambhu_3",
+        },
+        artisan: {
+          title: "Patan Durbar Square",
+          icon: "🎨",
+          tokens: 65,
+          description: "A center of Newari art and architecture.",
+          qrCode: "patan_4",
+        },
+        stupa: {
+          title: "Boudhanath Stupa",
+          icon: "☸️",
+          tokens: 80,
+          description: "One of the largest stupas in the world, a hub for Tibetan Buddhism.",
+          qrCode: "boudha_5",
+        },
+      };
+  
+      let currentTokens = 0;
+      let currentQRs = 0;
+      let currentAudios = 0;
+      let currentLocation = null;
+      let html5QrCode = null;
+      let unlockedQRs = new Set();
+  
+      function showPopup(locationType) {
+        currentLocation = locations[locationType];
+        const popup = document.getElementById("popup");
+  
+        document.getElementById("popupTitle").textContent = "Scan QR Code";
+        document.getElementById("popupSubtitle").textContent = currentLocation.title;
+        document.getElementById("popupDescription").textContent = currentLocation.description;
+        document.getElementById("popupIcon").textContent = currentLocation.icon;
+        document.getElementById("tokenReward").textContent = `+${currentLocation.tokens} Exploration Tokens`;
+  
+        document.getElementById("qrScanner").style.display = "block";
+        document.getElementById("rewardsSection").classList.remove("show");
+        document.getElementById("scanBtn").textContent = "START SCAN";
+        document.getElementById("scanBtn").disabled = false;
+        document.getElementById("scanBtn").onclick = startQRScan;
+  
+        document.getElementById("popupOverlay").style.display = "flex";
+        setTimeout(() => popup.classList.add("show"), 100);
+      }
+  
+      async function startQRScan() {
+        const scanBtn = document.getElementById("scanBtn");
+        scanBtn.textContent = "SCANNING...";
+        scanBtn.disabled = true;
+  
+        try {
+          html5QrCode = new Html5Qrcode("qrScanner");
+  
+          await html5QrCode.start(
+            { facingMode: "environment" },
+            { fps: 10, qrbox: 250 },
+            (decodedText) => {
+              console.log("QR scanned text:", decodedText);
+              const expected = currentLocation.qrCode;
+              if (decodedText === expected) {
+                html5QrCode
+                  .stop()
+                  .then(() => {
+                    handleQRSuccess(decodedText.split("_")[1]);
+                  })
+                  .catch((e) => console.error("Stop error:", e));
+              } else {
+                showToast("⚠️ Invalid QR code for this location");
+              }
             },
-            palace: { 
-                title: 'Hanuman Dhoka Palace', 
-                icon: '👑', 
-                tokens: 75,
-                description: 'A historic palace and UNESCO World Heritage Site in Kathmandu.',
-                qrCode: 'hanuman_2'
-            },
-            monkey: { 
-                title: 'Swayambhunath Stupa', 
-                icon: '🐒', 
-                tokens: 60,
-                description: 'The Monkey Temple, a spiritual site with panoramic views.',
-                qrCode: 'swayambhu_3'
-            },
-            artisan: { 
-                title: 'Patan Durbar Square', 
-                icon: '🎨', 
-                tokens: 65,
-                description: 'A center of Newari art and architecture.',
-                qrCode: 'patan_4'
-            },
-            stupa: { 
-                title: 'Boudhanath Stupa', 
-                icon: '☸️', 
-                tokens: 80,
-                description: 'One of the largest stupas in the world, a hub for Tibetan Buddhism.',
-                qrCode: 'boudha_5'
+            (error) => {
+              // Ignoring scan errors like no QR detected in frame
+              // console.warn("QR scan error:", error);
             }
-        };
-
-        let currentTokens = 0;
-        let currentQRs = 0;
-        let currentAudios = 0;
-        let currentLocation = null;
-        let qrStream = null;
-        let qrScanInterval = null;
-        let unlockedQRs = new Set();
-
-        function showPopup(locationType) {
-            currentLocation = locations[locationType];
-            const popup = document.getElementById('popup');
-            
-            document.getElementById('popupTitle').textContent = 'Scan QR Code';
-            document.getElementById('popupSubtitle').textContent = currentLocation.title;
-            document.getElementById('popupDescription').textContent = currentLocation.description;
-            document.getElementById('popupIcon').textContent = currentLocation.icon;
-            document.getElementById('tokenReward').textContent = `+${currentLocation.tokens} Exploration Tokens`;
-            
-            document.getElementById('qrScanner').style.display = 'block';
-            document.getElementById('rewardsSection').classList.remove('show');
-            document.getElementById('scanBtn').textContent = 'START SCAN';
-            document.getElementById('scanBtn').disabled = false;
-            document.getElementById('scanBtn').onclick = startQRScan;
-            
-            document.getElementById('popupOverlay').style.display = 'flex';
-            setTimeout(() => {
-                popup.classList.add('show');
-            }, 100);
+          );
+        } catch (err) {
+          console.error("Camera access error:", err);
+          showToast("❌ Camera access required for QR scanning");
+          scanBtn.textContent = "START SCAN";
+          scanBtn.disabled = false;
         }
-
-        async function startQRScan() {
-            const video = document.getElementById('qr-video');
-            const scanBtn = document.getElementById('scanBtn');
-            
-            try {
-                qrStream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: 'environment' }
-                });
-                
-                video.srcObject = qrStream;
-                scanBtn.textContent = 'SCANNING...';
-                scanBtn.disabled = true;
-                
-                // Simulate scanning sound
-                console.log('🎵 QR scanning sound effect played');
-                
-                qrScanInterval = setInterval(() => {
-                    scanQRCode(video);
-                }, 100);
-                
-            } catch (error) {
-                console.error('Camera access denied:', error);
-                showToast('❌ Camera access required for QR scanning');
-                scanBtn.disabled = false;
-                scanBtn.textContent = 'START SCAN';
-            }
+      }
+  
+      function skipScan() {
+        if (!currentLocation) return;
+  
+        // Fake scan success for testing:
+        handleQRSuccess(currentLocation.qrCode.split("_")[1]);
+        showToast("⚠️ Skipped scanning, fake success triggered.");
+        // Stop camera if running:
+        if (html5QrCode) {
+          html5QrCode
+            .stop()
+            .then(() => html5QrCode.clear())
+            .catch((e) => console.error("Skip scan cleanup error:", e));
+          html5QrCode = null;
         }
-
-        function scanQRCode(video) {
-            const canvas = document.createElement('canvas');
-            const context = canvas.getContext('2d');
-            
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            
-            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-            const code = jsQR(imageData.data, imageData.width, imageData.height);
-            
-            if (code) {
-                const qrData = code.data;
-                console.log('QR Code detected:', qrData);
-                
-                if (qrData === currentLocation.qrCode) {
-                    handleQRSuccess(currentLocation.qrCode.split('_')[1]);
-                } else {
-                    showToast('⚠️ Invalid QR code for this location');
-                }
-            }
+        // Hide scanner UI
+        document.getElementById("qrScanner").style.display = "none";
+        document.getElementById("scanBtn").textContent = "COLLECT REWARDS";
+        document.getElementById("scanBtn").disabled = false;
+        document.getElementById("scanBtn").onclick = collectRewards;
+      }
+  
+      function handleQRSuccess(qrNumber) {
+        if (html5QrCode) {
+          html5QrCode
+            .stop()
+            .then(() => html5QrCode.clear())
+            .catch((e) => console.error("QR cleanup error:", e));
+          html5QrCode = null;
         }
-
-        function handleQRSuccess(qrNumber) {
-            clearInterval(qrScanInterval);
-            if (qrStream) {
-                qrStream.getTracks().forEach(track => track.stop());
-                qrStream = null;
-            }
-            
-            if (unlockedQRs.has(qrNumber)) {
-                showToast('🔄 You already scanned this QR code!');
-                document.getElementById('scanBtn').textContent = 'ALREADY SCANNED';
-                document.getElementById('scanBtn').disabled = true;
-                return;
-            }
-            
-            unlockedQRs.add(qrNumber);
-            
-            currentTokens += currentLocation.tokens;
-            currentQRs += 1;
-            currentAudios += 1;
-            
-            document.getElementById('tokenCount').textContent = currentTokens;
-            document.getElementById('qrCount').textContent = currentQRs;
-            document.getElementById('audioCount').textContent = currentAudios;
-            
-            document.getElementById('qrScanner').style.display = 'none';
-            document.getElementById('rewardsSection').classList.add('show');
-            
-            document.getElementById('popupTitle').textContent = 'Success!';
-            document.getElementById('popupSubtitle').textContent = currentLocation.title;
-            document.getElementById('popupDescription').textContent = `Congratulations! You've successfully explored ${currentLocation.title} and unlocked exclusive content!`;
-            
-            document.getElementById('scanBtn').textContent = 'COLLECT REWARDS';
-            document.getElementById('scanBtn').disabled = false;
-            document.getElementById('scanBtn').onclick = collectRewards;
-            
-            // Simulate reward sound
-            console.log('🎉 Reward unlock sound effect played');
-            
-            showToast(`🎉 Scanned ${currentLocation.title}! +${currentLocation.tokens} tokens earned!`);
+  
+        if (unlockedQRs.has(qrNumber)) {
+          showToast("🔄 You already scanned this QR code!");
+          document.getElementById("scanBtn").textContent = "ALREADY SCANNED";
+          document.getElementById("scanBtn").disabled = true;
+          return;
         }
-
-        function collectRewards() {
-            showToast('🎁 Rewards collected! Check your inventory!');
-            closePopup();
+  
+        unlockedQRs.add(qrNumber);
+  
+        currentTokens += currentLocation.tokens;
+        currentQRs += 1;
+        currentAudios += 1;
+  
+        document.getElementById("tokenCount").textContent = currentTokens;
+        document.getElementById("qrCount").textContent = currentQRs;
+        document.getElementById("audioCount").textContent = currentAudios;
+  
+        document.getElementById("qrScanner").style.display = "none";
+        document.getElementById("rewardsSection").classList.add("show");
+        document.getElementById("popupTitle").textContent = "Success!";
+        document.getElementById("popupSubtitle").textContent = currentLocation.title;
+        document.getElementById("popupDescription").textContent = `Congratulations! You've successfully explored ${currentLocation.title}!`;
+  
+        document.getElementById("scanBtn").textContent = "COLLECT REWARDS";
+        document.getElementById("scanBtn").disabled = false;
+        document.getElementById("scanBtn").onclick = collectRewards;
+  
+        showToast(`🎉 Scanned ${currentLocation.title}! +${currentLocation.tokens} tokens earned!`);
+      }
+  
+      function collectRewards() {
+        showToast("🎁 Rewards collected!");
+        closePopup();
+      }
+  
+      function closePopup() {
+        if (html5QrCode) {
+          html5QrCode
+            .stop()
+            .then(() => html5QrCode.clear())
+            .catch((e) => console.error("QR cleanup error:", e));
+          html5QrCode = null;
         }
-
-        function closePopup() {
-            if (qrScanInterval) {
-                clearInterval(qrScanInterval);
-            }
-            if (qrStream) {
-                qrStream.getTracks().forEach(track => track.stop());
-                qrStream = null;
-            }
-            
-            const popup = document.getElementById('popup');
-            popup.classList.remove('show');
-            setTimeout(() => {
-                document.getElementById('popupOverlay').style.display = 'none';
-                document.getElementById('scanBtn').textContent = 'START SCAN';
-                document.getElementById('scanBtn').disabled = false;
-                document.getElementById('scanBtn').onclick = startQRScan;
-            }, 300);
+  
+        const popup = document.getElementById("popup");
+        popup.classList.remove("show");
+  
+        setTimeout(() => {
+          document.getElementById("popupOverlay").style.display = "none";
+          document.getElementById("scanBtn").textContent = "START SCAN";
+          document.getElementById("scanBtn").disabled = false;
+          document.getElementById("scanBtn").onclick = startQRScan;
+          document.getElementById("qrScanner").style.display = "block";
+          document.getElementById("rewardsSection").classList.remove("show");
+        }, 300);
+      }
+  
+      function showToast(message) {
+        const existing = document.querySelector(".toast");
+        if (existing) existing.remove();
+  
+        const toast = document.createElement("div");
+        toast.className = "toast";
+        toast.textContent = message;
+        document.body.appendChild(toast);
+  
+        setTimeout(() => toast.classList.add("show"), 100);
+        setTimeout(() => {
+          toast.classList.remove("show");
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      }
+  
+      // Avatar animation
+      let userX = 50,
+        userY = 40;
+      const userAvatar = document.querySelector(".user-avatar");
+      if (userAvatar) {
+        setInterval(() => {
+          userX += (Math.random() - 0.5) * 4;
+          userY += (Math.random() - 0.5) * 3;
+          userX = Math.max(15, Math.min(85, userX));
+          userY = Math.max(20, Math.min(70, userY));
+          userAvatar.style.left = userX + "%";
+          userAvatar.style.bottom = userY + "%";
+        }, 2000);
+      }
+  
+      document.addEventListener("DOMContentLoaded", function () {
+        showToast("🏔️ Welcome to Ghumante Yuwa! Start exploring!");
+        setTimeout(() => {
+          const mascotSpeech = document.querySelector(".mascot-speech");
+          if (mascotSpeech) mascotSpeech.textContent = "Find the QR codes at each location!";
+        }, 2000);
+      });
+  
+      document.addEventListener("keydown", function (e) {
+        if (
+          e.key >= "1" &&
+          e.key <= "5" &&
+          document.getElementById("popupOverlay").style.display === "flex"
+        ) {
+          const qrNumber = parseInt(e.key);
+          const expectedQr = currentLocation.qrCode.split("_")[1];
+          if (qrNumber === parseInt(expectedQr)) {
+            handleQRSuccess(qrNumber);
+          } else {
+            showToast("⚠️ Wrong QR code for this location");
+          }
         }
-
-        function showToast(message) {
-            const existingToast = document.querySelector('.toast');
-            if (existingToast) {
-                existingToast.remove();
-            }
-            
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.textContent = message;
-            document.body.appendChild(toast);
-            
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 100);
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-                setTimeout(() => {
-                    toast.remove();
-                }, 300);
-            }, 3000);
-        }
-
-        // Add moving effect to user avatar
-        let userX = 50;
-        let userY = 40;
-        const userAvatar = document.querySelector('.user-avatar');
-
-        if (userAvatar) {
-            setInterval(() => {
-                userX += (Math.random() - 0.5) * 4;
-                userY += (Math.random() - 0.5) * 3;
-                userX = Math.max(15, Math.min(85, userX));
-                userY = Math.max(20, Math.min(70, userY));
-                userAvatar.style.left = userX + '%';
-                userAvatar.style.bottom = userY + '%';
-            }, 2000);
-        }
-
-        // Welcome animation on load
-        document.addEventListener('DOMContentLoaded', function() {
-            showToast('🏔️ Welcome to Ghumante Yuwa! Start exploring!');
-            
-            setTimeout(() => {
-                const mascotSpeech = document.querySelector('.mascot-speech');
-                if (mascotSpeech) {
-                    mascotSpeech.textContent = 'Find the QR codes at each location!';
-                }
-            }, 2000);
-        });
-
-        // Keyboard shortcuts for testing
-        document.addEventListener('keydown', function(e) {
-            if (e.key >= '1' && e.key <= '5' && document.getElementById('popupOverlay').style.display === 'flex') {
-                const qrNumber = parseInt(e.key);
-                const expectedQr = currentLocation.qrCode.split('_')[1];
-                if (qrNumber === parseInt(expectedQr)) {
-                    handleQRSuccess(qrNumber);
-                } else {
-                    showToast('⚠️ Wrong QR code for this location');
-                }
-            }
-        });
-
-        // Close popup when clicking overlay
-        document.getElementById('popupOverlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closePopup();
-            }
-        });
+      });
+  
+      document.getElementById("popupOverlay").addEventListener("click", function (e) {
+        if (e.target === this) closePopup();
+      });
     </script>
-</body>
-</html>
+  </body>
+  
