@@ -776,526 +776,596 @@
     </style>
 </head>
 <body>
-    <!-- Mascot -->
-    <div class="mascot">
-      <div class="mascot-speech">Discover Kathmandu!</div>
-    </div>
-  
-    <div class="phone-container">
-      <div class="screen">
-        <!-- Main App Screen -->
-        <div class="main-screen">
-          <div class="header">
-            <h1>GHUMANTE YUWA</h1>
-            <p>Discover Kathmandu Valley</p>
-  
-            <div class="stats-bar">
-              <div class="stat">
-                <div class="stat-number" id="tokenCount">0</div>
-                <div class="stat-label">Tokens</div>
-              </div>
-              <div class="stat">
-                <div class="stat-number" id="qrCount">0</div>
-                <div class="stat-label">QR Found</div>
-              </div>
-              <div class="stat">
-                <div class="stat-number" id="audioCount">0</div>
-                <div class="stat-label">Stories</div>
-              </div>
+  <!-- Mascot -->
+  <div class="mascot">
+    <div class="mascot-speech">Discover Kathmandu!</div>
+  </div>
+
+  <div class="phone-container">
+    <div class="screen">
+      <!-- Main App Screen -->
+      <div class="main-screen">
+        <div class="header">
+          <h1>GHUMANTE YUWA</h1>
+          <p>Discover Kathmandu Valley</p>
+
+          <div class="stats-bar">
+            <div class="stat">
+              <div class="stat-number" id="tokenCount">0</div>
+              <div class="stat-label">Tokens</div>
             </div>
-          </div>
-  
-          <div class="map-container">
-            <!-- QR Code Pokestops -->
-            <div class="qr-mascot" onclick="showPopup('pashupatinath')" data-qr="1">
-              <div class="qr-icon">🏛️</div>
+            <div class="stat">
+              <div class="stat-number" id="qrCount">0</div>
+              <div class="stat-label">QR Found</div>
             </div>
-            <div class="qr-mascot" onclick="showPopup('hanuman')" data-qr="2">
-              <div class="qr-icon">👑</div>
+            <div class="stat">
+              <div class="stat-number" id="audioCount">0</div>
+              <div class="stat-label">Stories</div>
             </div>
-            <div class="qr-mascot" onclick="showPopup('swayambhunath')" data-qr="3">
-              <div class="qr-icon">🐒</div>
-            </div>
-            <div class="qr-mascot" onclick="showPopup('patan')" data-qr="4">
-              <div class="qr-icon">🎨</div>
-            </div>
-            <div class="qr-mascot" onclick="showPopup('boudhanath')" data-qr="5">
-              <div class="qr-icon">☸️</div>
-            </div>
-  
-            <!-- User Avatar -->
-            <div class="user-avatar"></div>
           </div>
         </div>
-  
-        <!-- Popup -->
-        <div class="popup-overlay" id="popupOverlay">
-          <div class="popup" id="popup">
-            <div class="popup-header">
-              <div class="popup-icon" id="popupIcon">🏛️</div>
+
+        <div class="map-container">
+          <!-- QR Code Pokestops -->
+          <div class="qr-mascot" onclick="showPopup('pashupatinath')" data-qr="1">
+            <div class="qr-icon">🏛️</div>
+          </div>
+          <div class="qr-mascot" onclick="showPopup('hanuman')" data-qr="2">
+            <div class="qr-icon">👑</div>
+          </div>
+          <div class="qr-mascot" onclick="showPopup('swayambhunath')" data-qr="3">
+            <div class="qr-icon">🐒</div>
+          </div>
+          <div class="qr-mascot" onclick="showPopup('patan')" data-qr="4">
+            <div class="qr-icon">🎨</div>
+          </div>
+          <div class="qr-mascot" onclick="showPopup('boudhanath')" data-qr="5">
+            <div class="qr-icon">☸️</div>
+          </div>
+
+          <!-- User Avatar -->
+          <div class="user-avatar"></div>
+        </div>
+      </div>
+
+      <!-- Popup -->
+      <div class="popup-overlay" id="popupOverlay">
+        <div class="popup" id="popup">
+          <div class="popup-header">
+            <div class="popup-icon" id="popupIcon">🏛️</div>
+          </div>
+
+          <div class="popup-content">
+            <h3 id="popupTitle">Scan QR Code</h3>
+            <div class="popup-subtitle" id="popupSubtitle">Point your camera at the QR code</div>
+            <div class="popup-description" id="popupDescription">
+              Find and scan the QR code at this location to unlock exclusive content and rewards!
             </div>
-  
-            <div class="popup-content">
-              <h3 id="popupTitle">Scan QR Code</h3>
-              <div class="popup-subtitle" id="popupSubtitle">Point your camera at the QR code</div>
-              <div class="popup-description" id="popupDescription">
-                Find and scan the QR code at this location to unlock exclusive content and rewards!
-              </div>
-  
-              <!-- QR Scanner -->
-              <div class="qr-scanner" id="qrScanner">
-                <div class="scanner-line"></div>
-                <video id="qr-video" style="display: none;"></video>
-              </div>
-  
-              <!-- Content View - Audio and Images -->
-              <div class="content-view" id="contentView">
-                <div class="audio-player">
-                  <div class="audio-title" id="audioTitle">Audio Tour</div>
-                  <div class="audio-controls">
-                    <button class="play-btn" id="playBtn">▶️</button>
-                    <div class="audio-progress">
-                      <div class="progress-bar" id="progressBar"></div>
-                    </div>
-                    <div class="audio-time" id="audioTime">0:00 / 0:00</div>
+
+            <!-- QR Scanner -->
+            <div class="qr-scanner" id="qrScanner">
+              <div class="scanner-line"></div>
+              <video id="qr-video" style="display: none;"></video>
+            </div>
+
+            <!-- Content View - Audio and Images -->
+            <div class="content-view" id="contentView">
+              <div class="audio-player">
+                <div class="audio-title" id="audioTitle">Audio Tour</div>
+                <div class="audio-controls">
+                  <button class="play-btn" id="playBtn">▶️</button>
+                  <div class="audio-progress">
+                    <div class="progress-bar" id="progressBar"></div>
                   </div>
-                  <audio id="audioPlayer" preload="metadata"></audio>
+                  <div class="audio-time" id="audioTime">0:00 / 0:00</div>
                 </div>
-  
-                <div class="image-gallery">
-                  <div class="gallery-title">📸 Location Gallery</div>
-                  <div class="image-scroll" id="imageGallery">
-                    <!-- Images will be populated dynamically -->
-                  </div>
-                </div>
+                <audio id="audioPlayer" preload="metadata"></audio>
               </div>
-  
-              <!-- Rewards Section -->
-              <div class="rewards-section" id="rewardsSection">
-                <div class="rewards-title">🎁 Rewards Unlocked!</div>
-                <div class="reward-item">
-                  <span class="reward-icon">🪙</span>
-                  <span id="tokenReward">+50 Exploration Tokens</span>
-                </div>
-                <div class="reward-item">
-                  <span class="reward-icon">🎧</span>
-                  <span>Audio Story Unlocked</span>
-                </div>
-                <div class="reward-item">
-                  <span class="reward-icon">🏆</span>
-                  <span>Explorer Badge Earned</span>
+
+              <div class="image-gallery">
+                <div class="gallery-title">📸 Location Gallery</div>
+                <div class="image-scroll" id="imageGallery">
+                  <!-- Images will be populated dynamically -->
                 </div>
               </div>
             </div>
-  
-            <div class="popup-buttons">
-              <button class="popup-btn scan-btn" onclick="startQRScan()" id="scanBtn">START SCAN</button>
-              <button class="popup-btn skip-btn" onclick="skipScan()" id="skipBtn">SKIP SCAN</button>
-              <button class="popup-btn close-btn" onclick="closePopup()">CLOSE</button>
+
+            <!-- Rewards Section -->
+            <div class="rewards-section" id="rewardsSection">
+              <div class="rewards-title">🎁 Rewards Unlocked!</div>
+              <div class="reward-item">
+                <span class="reward-icon">🪙</span>
+                <span id="tokenReward">+50 Exploration Tokens</span>
+              </div>
+              <div class="reward-item">
+                <span class="reward-icon">🎧</span>
+                <span>Audio Story Unlocked</span>
+              </div>
+              <div class="reward-item">
+                <span class="reward-icon">🏆</span>
+                <span>Explorer Badge Earned</span>
+              </div>
             </div>
+          </div>
+
+          <div class="popup-buttons">
+            <button class="popup-btn scan-btn" onclick="startQRScan()" id="scanBtn">START SCAN</button>
+            <button class="popup-btn skip-btn" onclick="skipScan()" id="skipBtn">SKIP SCAN</button>
+            <button class="popup-btn close-btn" onclick="closePopup()" id="closeBtn">CLOSE</button>
           </div>
         </div>
       </div>
     </div>
-  
-    <!-- QR Scanner Library -->
-    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
-  
-    <script>
-      const locations = {
-        pashupatinath: {
-          title: "Pashupatinath Temple",
-          icon: "🏛️",
-          tokens: 50,
-          description: "A sacred Hindu temple complex on the banks of the Bagmati River.",
-          qrCode: "PASHUPATI_TEMPLE_001",
-          audioFile: "assets/voice/pashupatinath.mp3",
-          images: ["pashupatinath1.jpg", "pashupatinath2.jpg", "pashupatinath3.jpg", "pashupatinath4.jpg"]
-        },
-        hanuman: {
-          title: "Hanuman Dhoka Palace",
-          icon: "👑",
-          tokens: 75,
-          description: "A historic palace and UNESCO World Heritage Site in Kathmandu.",
-          qrCode: "HANUMAN_PALACE_002",
-          audioFile: "assets/voice/hanuman.mp3",
-          images: ["hanuman1.jpg", "hanuman2.jpg", "hanuman3.jpg", "hanuman4.jpg"]
-        },
-        swayambhunath: {
-          title: "Swayambhunath Stupa",
-          icon: "🐒",
-          tokens: 60,
-          description: "The Monkey Temple, a spiritual site with panoramic views.",
-          qrCode: "SWAYAMBHU_STUPA_003",
-          audioFile: "assets/voice/swayambhunath.mp3",
-          images: ["swayambhunath1.jpg", "swayambhunath2.jpg", "swayambhunath3.jpg", "swayambhunath4.jpg"]
-        },
-        patan: {
-          title: "Patan Durbar Square",
-          icon: "🎨",
-          tokens: 65,
-          description: "A center of Newari art and architecture.",
-          qrCode: "PATAN_DURBAR_004",
-          audioFile: "assets/voice/patan.mp3",
-          images: ["patan1.jpg", "patan2.jpg", "patan3.jpg", "patan4.jpg"]
-        },
-        boudhanath: {
-          title: "Boudhanath Stupa",
-          icon: "☸️",
-          tokens: 80,
-          description: "One of the largest stupas in the world, a hub for Tibetan Buddhism.",
-          qrCode: "BOUDHA_STUPA_005",
-          audioFile: "assets/voice/boudhanath.mp3",
-          images: ["boudhanath1.jpg", "boudhanath2.jpg", "boudhanath3.jpg", "boudhanath4.jpg"]
-        },
-      };
-  
-      let currentTokens = 0;
-      let currentQRs = 0;
-      let currentAudios = 0;
-      let currentLocation = null;
-      let html5QrCode = null;
-      let unlockedQRs = new Set();
-      let audioPlayer = null;
-      let isPlaying = false;
-      let currentAudio = null;
-  
-      function showPopup(locationType) {
-        currentLocation = locations[locationType];
-        const popup = document.getElementById("popup");
-  
-        document.getElementById("popupTitle").textContent = "Scan QR Code";
-        document.getElementById("popupSubtitle").textContent = currentLocation.title;
-        document.getElementById("popupDescription").textContent = currentLocation.description;
-        document.getElementById("popupIcon").textContent = currentLocation.icon;
-        document.getElementById("tokenReward").textContent = `+${currentLocation.tokens} Exploration Tokens`;
-        document.getElementById("audioTitle").textContent = `${currentLocation.title} - Audio Tour`;
-  
-        // Reset UI state
-        document.getElementById("qrScanner").style.display = "block";
-        document.getElementById("contentView").classList.remove("show");
-        document.getElementById("rewardsSection").classList.remove("show");
-        document.getElementById("scanBtn").textContent = "START SCAN";
-        document.getElementById("scanBtn").disabled = false;
-        document.getElementById("scanBtn").onclick = startQRScan;
-        document.getElementById("skipBtn").style.display = "inline-block";
-  
-        document.getElementById("popupOverlay").style.display = "flex";
-        setTimeout(() => popup.classList.add("show"), 100);
-      }
-  
-      async function startQRScan() {
-        const scanBtn = document.getElementById("scanBtn");
-        const skipBtn = document.getElementById("skipBtn");
+  </div>
+
+  <!-- QR Scanner Library -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+  <script>
+    const locations = {
+      pashupatinath: {
+        title: "Pashupatinath Temple",
+        icon: "🏛️",
+        tokens: 50,
+        description: "A sacred Hindu temple complex on the banks of the Bagmati River.",
+        qrCode: "PASHUPATI_TEMPLE_001",
+        audioFile: "assets/voice/pashupatinath.mp3",
+        images: ["pashupatinath1.jpg", "pashupatinath2.jpg", "pashupatinath3.jpg", "pashupatinath4.jpg"]
+      },
+      hanuman: {
+        title: "Hanuman Dhoka Palace",
+        icon: "👑",
+        tokens: 75,
+        description: "A historic palace and UNESCO World Heritage Site in Kathmandu.",
+        qrCode: "HANUMAN_PALACE_002",
+        audioFile: "assets/voice/hanuman.mp3",
+        images: ["hanuman1.jpg", "hanuman2.jpg", "hanuman3.jpg", "hanuman4.jpg"]
+      },
+      swayambhunath: {
+        title: "Swayambhunath Stupa",
+        icon: "🐒",
+        tokens: 60,
+        description: "The Monkey Temple, a spiritual site with panoramic views.",
+        qrCode: "SWAYAMBHU_STUPA_003",
+        audioFile: "assets/voice/swayambhunath.mp3",
+        images: ["swayambhunath1.jpg", "swayambhunath2.jpg", "swayambhunath3.jpg", "swayambhunath4.jpg"]
+      },
+      patan: {
+        title: "Patan Durbar Square",
+        icon: "🎨",
+        tokens: 65,
+        description: "A center of Newari art and architecture.",
+        qrCode: "PATAN_DURBAR_004",
+        audioFile: "assets/voice/patan.mp3",
+        images: ["patan1.jpg", "patan2.jpg", "patan3.jpg", "patan4.jpg"]
+      },
+      boudhanath: {
+        title: "Boudhanath Stupa",
+        icon: "☸️",
+        tokens: 80,
+        description: "One of the largest stupas in the world, a hub for Tibetan Buddhism.",
+        qrCode: "BOUDHA_STUPA_005",
+        audioFile: "assets/voice/boudhanath.mp3",
+        images: ["boudhanath1.jpg", "boudhanath2.jpg", "boudhanath3.jpg", "boudhanath4.jpg"]
+      },
+    };
+
+    let currentTokens = 0;
+    let currentQRs = 0;
+    let currentAudios = 0;
+    let currentLocation = null;
+    let html5QrCode = null;
+    let unlockedQRs = new Set();
+    let audioPlayer = null;
+    let isPlaying = false;
+    let currentAudio = null;
+
+    function showPopup(locationType) {
+      console.log("showPopup called for:", locationType); // Debug log
+      currentLocation = locations[locationType];
+      const popup = document.getElementById("popup");
+
+      document.getElementById("popupTitle").textContent = "Scan QR Code";
+      document.getElementById("popupSubtitle").textContent = currentLocation.title;
+      document.getElementById("popupDescription").textContent = currentLocation.description;
+      document.getElementById("popupIcon").textContent = currentLocation.icon;
+      document.getElementById("tokenReward").textContent = `+${currentLocation.tokens} Exploration Tokens`;
+      document.getElementById("audioTitle").textContent = `${currentLocation.title} - Audio Tour`;
+
+      // Reset UI state
+      document.getElementById("qrScanner").style.display = "block";
+      document.getElementById("contentView").classList.remove("show");
+      document.getElementById("rewardsSection").classList.remove("show");
+      document.getElementById("scanBtn").textContent = "START SCAN";
+      document.getElementById("scanBtn").disabled = false;
+      document.getElementById("scanBtn").onclick = startQRScan;
+      document.getElementById("skipBtn").style.display = "inline-block";
+      document.getElementById("closeBtn").style.display = "inline-block";
+
+      // Ensure main-screen and map-container are interactive
+      const mainScreen = document.querySelector(".main-screen");
+      const mapContainer = document.querySelector(".map-container");
+      mainScreen.style.display = "flex";
+      mainScreen.style.opacity = "1";
+      mainScreen.style.zIndex = "1";
+      mainScreen.style.pointerEvents = "auto";
+      mapContainer.style.display = "block";
+      mapContainer.style.opacity = "1";
+      mapContainer.style.pointerEvents = "auto";
+
+      document.getElementById("popupOverlay").style.display = "flex";
+      document.getElementById("popupOverlay").style.opacity = "1";
+      document.getElementById("popupOverlay").style.pointerEvents = "auto";
+      setTimeout(() => popup.classList.add("show"), 100);
+    }
+
+    async function startQRScan() {
+      const scanBtn = document.getElementById("scanBtn");
+      const skipBtn = document.getElementById("skipBtn");
+      
+      scanBtn.textContent = "SCANNING...";
+      scanBtn.disabled = true;
+      skipBtn.textContent = "STOP SCAN";
+      skipBtn.onclick = stopQRScan;
+
+      try {
+        // Clear any existing scanner
+        if (html5QrCode) {
+          await html5QrCode.stop();
+          html5QrCode.clear();
+        }
+
+        html5QrCode = new Html5Qrcode("qrScanner");
         
-        scanBtn.textContent = "SCANNING...";
-        scanBtn.disabled = true;
-        skipBtn.textContent = "STOP SCAN";
-        skipBtn.onclick = stopQRScan;
-  
-        try {
-          // Clear any existing scanner
-          if (html5QrCode) {
-            await html5QrCode.stop();
-            html5QrCode.clear();
-          }
-  
-          html5QrCode = new Html5Qrcode("qrScanner");
-          
-          // Show video element
-          document.getElementById("qr-video").style.display = "block";
-          document.querySelector(".scanner-line").style.display = "block";
-  
-          const config = {
-            fps: 10,
-            qrbox: { width: 200, height: 200 },
-            aspectRatio: 1.0
-          };
-  
-          await html5QrCode.start(
-            { facingMode: "environment" },
-            config,
-            (decodedText) => {
-              console.log("QR Code detected:", decodedText);
-              
-              // Check if this is the correct QR code for current location
-              if (decodedText === currentLocation.qrCode) {
-                html5QrCode.stop()
-                  .then(() => {
-                    handleQRSuccess();
-                  })
-                  .catch((e) => console.error("Stop error:", e));
-              } else {
-                showToast("⚠️ Invalid QR code for this location");
-              }
-            },
-            (errorMessage) => {
-              // Suppress common scanning errors
-              if (!errorMessage.includes("No MultiFormat Readers")) {
-                console.warn("QR scan error:", errorMessage);
-              }
+        // Show video element
+        document.getElementById("qr-video").style.display = "block";
+        document.querySelector(".scanner-line").style.display = "block";
+
+        const config = {
+          fps: 10,
+          qrbox: { width: 200, height: 200 },
+          aspectRatio: 1.0
+        };
+
+        await html5QrCode.start(
+          { facingMode: "environment" },
+          config,
+          (decodedText) => {
+            console.log("QR Code detected:", decodedText);
+            
+            // Check if this is the correct QR code for current location
+            if (decodedText === currentLocation.qrCode) {
+              html5QrCode.stop()
+                .then(() => {
+                  handleQRSuccess();
+                })
+                .catch((e) => console.error("Stop error:", e));
+            } else {
+              showToast("⚠️ Invalid QR code for this location");
             }
-          );
-        } catch (err) {
-          console.error("Camera access error:", err);
-          showToast("❌ Camera access required for QR scanning");
-          resetScanUI();
-        }
-      }
-  
-      async function stopQRScan() {
-        try {
-          if (html5QrCode) {
-            await html5QrCode.stop();
-            html5QrCode.clear();
-            html5QrCode = null;
+          },
+          (errorMessage) => {
+            // Suppress common scanning errors
+            if (!errorMessage.includes("No MultiFormat Readers")) {
+              console.warn("QR scan error:", errorMessage);
+            }
           }
-        } catch (err) {
-          console.error("Error stopping scan:", err);
-        }
+        );
+      } catch (err) {
+        console.error("Camera access error:", err);
+        showToast("❌ Camera access required for QR scanning");
         resetScanUI();
       }
-  
-      function resetScanUI() {
-        document.getElementById("scanBtn").textContent = "START SCAN";
-        document.getElementById("scanBtn").disabled = false;
-        document.getElementById("scanBtn").onclick = startQRScan;
-        document.getElementById("skipBtn").textContent = "SKIP SCAN";
-        document.getElementById("skipBtn").onclick = skipScan;
-        document.getElementById("qr-video").style.display = "none";
-      }
-  
-      function skipScan() {
-        if (!currentLocation) return;
-  
-        // For demo purposes, simulate successful scan
-        handleQRSuccess();
-        showToast("🎯 Demo mode: QR scan simulated successfully!");
-        
-        // Stop any running scanner
+    }
+
+    async function stopQRScan() {
+      try {
         if (html5QrCode) {
-          html5QrCode.stop()
-            .then(() => html5QrCode.clear())
-            .catch((e) => console.error("Skip scan cleanup error:", e));
+          await html5QrCode.stop();
+          html5QrCode.clear();
           html5QrCode = null;
         }
+      } catch (err) {
+        console.error("Error stopping scan:", err);
       }
-  
-      function handleQRSuccess() {
-        const locationKey = getLocationKey(currentLocation.qrCode);
-        
-        if (unlockedQRs.has(locationKey)) {
-          showToast("🔄 You already scanned this QR code!");
-          document.getElementById("scanBtn").textContent = "ALREADY SCANNED";
-          document.getElementById("scanBtn").disabled = true;
-          showContentView();
-          return;
-        }
-  
-        unlockedQRs.add(locationKey);
-  
-        // Update stats
-        currentTokens += currentLocation.tokens;
-        currentQRs += 1;
-        currentAudios += 1;
-  
-        document.getElementById("tokenCount").textContent = currentTokens;
-        document.getElementById("qrCount").textContent = currentQRs;
-        document.getElementById("audioCount").textContent = currentAudios;
-  
-        // Hide scanner and show content
-        document.getElementById("qrScanner").style.display = "none";
-        document.getElementById("rewardsSection").classList.add("show");
-        document.getElementById("popupTitle").textContent = "Success!";
-        document.getElementById("popupSubtitle").textContent = currentLocation.title;
-        document.getElementById("popupDescription").textContent = `Congratulations! You've successfully explored ${currentLocation.title}!`;
-  
-        document.getElementById("scanBtn").textContent = "VIEW CONTENT";
-        document.getElementById("scanBtn").disabled = false;
-        document.getElementById("scanBtn").onclick = showContentView;
-        document.getElementById("skipBtn").style.display = "none";
-  
-        showToast(`🎉 Scanned ${currentLocation.title}! +${currentLocation.tokens} tokens earned!`);
+      resetScanUI();
+    }
+
+    function resetScanUI() {
+      document.getElementById("scanBtn").textContent = "START SCAN";
+      document.getElementById("scanBtn").disabled = false;
+      document.getElementById("scanBtn").onclick = startQRScan;
+      document.getElementById("skipBtn").textContent = "SKIP SCAN";
+      document.getElementById("skipBtn").onclick = skipScan;
+      document.getElementById("qr-video").style.display = "none";
+      document.getElementById("closeBtn").style.display = "inline-block";
+    }
+
+    function skipScan() {
+      if (!currentLocation) return;
+
+      // For demo purposes, simulate successful scan
+      handleQRSuccess();
+      showToast("🎯 Demo mode: QR scan simulated successfully!");
+      
+      // Stop any running scanner
+      if (html5QrCode) {
+        html5QrCode.stop()
+          .then(() => html5QrCode.clear())
+          .catch((e) => console.error("Skip scan cleanup error:", e));
+        html5QrCode = null;
       }
-  
-      function showContentView() {
-        document.getElementById("rewardsSection").classList.remove("show");
-        document.getElementById("contentView").classList.add("show");
-        
-        // Setup audio player
-        setupAudioPlayer();
-        
-        // Setup image gallery
-        setupImageGallery();
-        
-        // Update button
-        document.getElementById("scanBtn").textContent = "CLOSE";
-        document.getElementById("scanBtn").onclick = closePopup;
+    }
+
+    function handleQRSuccess() {
+      const locationKey = getLocationKey(currentLocation.qrCode);
+      
+      if (unlockedQRs.has(locationKey)) {
+        showToast("🔄 You already scanned this QR code!");
+        document.getElementById("scanBtn").textContent = "ALREADY SCANNED";
+        document.getElementById("scanBtn").disabled = true;
+        showContentView();
+        return;
       }
-  
-      function setupAudioPlayer() {
-        const audioPlayer = document.getElementById("audioPlayer");
-        const playBtn = document.getElementById("playBtn");
-        const progressBar = document.getElementById("progressBar");
-        const audioTime = document.getElementById("audioTime");
-        
-        // Set audio source
-        audioPlayer.src = currentLocation.audioFile;
-        
-        // Handle audio loading error
-        audioPlayer.onerror = function() {
-          console.warn("Audio file not found:", currentLocation.audioFile);
-          showToast("🎵 Audio tour coming soon!");
-        };
-        
-        playBtn.onclick = function() {
-          if (isPlaying) {
-            audioPlayer.pause();
-            playBtn.textContent = "▶️";
-            isPlaying = false;
-          } else {
-            audioPlayer.play().catch(err => {
-              console.warn("Audio play failed:", err);
-              showToast("🎵 Audio not available in demo mode");
-            });
-            playBtn.textContent = "⏸️";
-            isPlaying = true;
-          }
-        };
-        
-        audioPlayer.ontimeupdate = function() {
-          const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-          progressBar.style.width = progress + "%";
-          
-          const currentMin = Math.floor(audioPlayer.currentTime / 60);
-          const currentSec = Math.floor(audioPlayer.currentTime % 60);
-          const totalMin = Math.floor(audioPlayer.duration / 60);
-          const totalSec = Math.floor(audioPlayer.duration % 60);
-          
-          audioTime.textContent = `${currentMin}:${currentSec.toString().padStart(2, '0')} / ${totalMin}:${totalSec.toString().padStart(2, '0')}`;
-        };
-        
-        audioPlayer.onended = function() {
+
+      unlockedQRs.add(locationKey);
+
+      // Update stats
+      currentTokens += currentLocation.tokens;
+      currentQRs += 1;
+      currentAudios += 1;
+
+      document.getElementById("tokenCount").textContent = currentTokens;
+      document.getElementById("qrCount").textContent = currentQRs;
+      document.getElementById("audioCount").textContent = currentAudios;
+
+      // Hide scanner and show content
+      document.getElementById("qrScanner").style.display = "none";
+      document.getElementById("rewardsSection").classList.add("show");
+      document.getElementById("popupTitle").textContent = "Success!";
+      document.getElementById("popupSubtitle").textContent = currentLocation.title;
+      document.getElementById("popupDescription").textContent = `Congratulations! You've successfully explored ${currentLocation.title}!`;
+
+      document.getElementById("scanBtn").textContent = "VIEW CONTENT";
+      document.getElementById("scanBtn").disabled = false;
+      document.getElementById("scanBtn").onclick = showContentView;
+      document.getElementById("skipBtn").style.display = "none";
+      document.getElementById("closeBtn").style.display = "inline-block";
+
+      showToast(`🎉 Scanned ${currentLocation.title}! +${currentLocation.tokens} tokens earned!`);
+    }
+
+    function showContentView() {
+      document.getElementById("rewardsSection").classList.remove("show");
+      document.getElementById("contentView").classList.add("show");
+      
+      // Hide close button to avoid duplicates
+      document.getElementById("closeBtn").style.display = "none";
+      
+      // Setup audio player
+      setupAudioPlayer();
+      
+      // Setup image gallery
+      setupImageGallery();
+      
+      // Update scan button to close
+      document.getElementById("scanBtn").textContent = "CLOSE";
+      document.getElementById("scanBtn").disabled = false;
+      document.getElementById("scanBtn").onclick = closePopup;
+    }
+
+    function setupAudioPlayer() {
+      const audioPlayer = document.getElementById("audioPlayer");
+      const playBtn = document.getElementById("playBtn");
+      const progressBar = document.getElementById("progressBar");
+      const audioTime = document.getElementById("audioTime");
+      
+      // Set audio source
+      audioPlayer.src = currentLocation.audioFile;
+      
+      // Handle audio loading error
+      audioPlayer.onerror = function() {
+        console.warn("Audio file not found:", currentLocation.audioFile);
+        showToast("🎵 Audio tour coming soon!");
+      };
+      
+      playBtn.onclick = function() {
+        if (isPlaying) {
+          audioPlayer.pause();
           playBtn.textContent = "▶️";
           isPlaying = false;
-          progressBar.style.width = "0%";
-        };
-      }
-  
-      function setupImageGallery() {
-        const imageGallery = document.getElementById("imageGallery");
-        imageGallery.innerHTML = "";
+        } else {
+          audioPlayer.play().catch(err => {
+            console.warn("Audio play failed:", err);
+            showToast("🎵 Audio not available in demo mode");
+          });
+          playBtn.textContent = "⏸️";
+          isPlaying = true;
+        }
+      };
+      
+      audioPlayer.ontimeupdate = function() {
+        const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+        progressBar.style.width = progress + "%";
         
-        currentLocation.images.forEach((imageName, index) => {
-          const imageDiv = document.createElement("div");
-          imageDiv.className = "gallery-image";
-          imageDiv.style.backgroundImage = `url(assets/images/${imageName})`;
-          
-          // Handle image loading error
-          const testImg = new Image();
-          testImg.onerror = function() {
-            // Use placeholder gradient if image not found
-            imageDiv.style.backgroundImage = `linear-gradient(135deg, #dc2626, #b91c1c)`;
-            imageDiv.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 12px; text-align: center;">Image ${index + 1}</div>`;
-          };
-          testImg.src = `assets/images/${imageName}`;
-          
-          imageDiv.onclick = function() {
-            showToast(`🖼️ Viewing ${currentLocation.title} - Image ${index + 1}`);
-          };
-          
-          imageGallery.appendChild(imageDiv);
-        });
-      }
-  
-      function getLocationKey(qrCode) {
-        return qrCode.split("_")[0].toLowerCase();
-      }
-  
-      function closePopup() {
-        // Stop audio if playing
-        const audioPlayer = document.getElementById("audioPlayer");
-        if (audioPlayer && !audioPlayer.paused) {
-          audioPlayer.pause();
+        const currentMin = Math.floor(audioPlayer.currentTime / 60);
+        const currentSec = Math.floor(audioPlayer.currentTime % 60);
+        const totalMin = Math.floor(audioPlayer.duration / 60);
+        const totalSec = Math.floor(audioPlayer.duration % 60);
+        
+        audioTime.textContent = `${currentMin}:${currentSec.toString().padStart(2, '0')} / ${totalMin}:${totalSec.toString().padStart(2, '0')}`;
+      };
+      
+      audioPlayer.onended = function() {
+        playBtn.textContent = "▶️";
+        isPlaying = false;
+        progressBar.style.width = "0%";
+      };
+    }
+
+    function setupImageGallery() {
+      const imageGallery = document.getElementById("imageGallery");
+      imageGallery.innerHTML = "";
+      
+      currentLocation.images.forEach((imageName, index) => {
+        const imageDiv = document.createElement("div");
+        imageDiv.className = "gallery-image";
+        imageDiv.style.backgroundImage = `url(assets/images/${imageName})`;
+        
+        // Handle image loading error
+        const testImg = new Image();
+        testImg.onerror = function() {
+          imageDiv.style.backgroundImage = `linear-gradient(135deg, #dc2626, #b91c1c)`;
+          imageDiv.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: white; font-size: 12px; text-align: center;">Image ${index + 1}</div>`;
+        };
+        testImg.src = `assets/images/${imageName}`;
+        
+        imageDiv.onclick = function() {
+          showToast(`🖼️ Viewing ${currentLocation.title} - Image ${index + 1}`);
+        };
+        
+        imageGallery.appendChild(imageDiv);
+      });
+    }
+
+    function getLocationKey(qrCode) {
+      return qrCode.split("_")[0].toLowerCase();
+    }
+
+    function closePopup() {
+      console.log("closePopup called"); // Debug log
+      const popup = document.getElementById("popup");
+      const popupOverlay = document.getElementById("popupOverlay");
+      const mainScreen = document.querySelector(".main-screen");
+      const mapContainer = document.querySelector(".map-container");
+
+      // Stop audio with error handling
+      const audioPlayer = document.getElementById("audioPlayer");
+      try {
+        if (audioPlayer) {
+          if (!audioPlayer.paused) {
+            audioPlayer.pause();
+          }
           audioPlayer.currentTime = 0;
+          audioPlayer.src = "";
         }
         isPlaying = false;
-        
-        // Stop QR scanner if running
+      } catch (err) {
+        console.error("Audio cleanup error:", err);
+        showToast("⚠️ Error resetting audio, but closing popup...");
+      }
+
+      // Stop QR scanner with error handling
+      try {
         if (html5QrCode) {
           html5QrCode.stop()
             .then(() => html5QrCode.clear())
             .catch((e) => console.error("QR cleanup error:", e));
           html5QrCode = null;
         }
-  
-        const popup = document.getElementById("popup");
-        popup.classList.remove("show");
-  
-        setTimeout(() => {
-          document.getElementById("popupOverlay").style.display = "none";
-          resetScanUI();
-          document.getElementById("qrScanner").style.display = "block";
-          document.getElementById("contentView").classList.remove("show");
-          document.getElementById("rewardsSection").classList.remove("show");
-        }, 300);
+      } catch (err) {
+        console.error("QR scanner cleanup error:", err);
+        showToast("⚠️ Error stopping QR scanner, but closing popup...");
       }
-  
-      function showToast(message) {
-        const existing = document.querySelector(".toast");
-        if (existing) existing.remove();
-  
-        const toast = document.createElement("div");
-        toast.className = "toast";
-        toast.textContent = message;
-        document.body.appendChild(toast);
-  
-        setTimeout(() => toast.classList.add("show"), 100);
-        setTimeout(() => {
-          toast.classList.remove("show");
-          setTimeout(() => toast.remove(), 300);
-        }, 3000);
-      }
-  
-      // Avatar animation
-      let userX = 50, userY = 40;
-      const userAvatar = document.querySelector(".user-avatar");
-      if (userAvatar) {
-        setInterval(() => {
-          userX += (Math.random() - 0.5) * 4;
-          userY += (Math.random() - 0.5) * 3;
-          userX = Math.max(15, Math.min(85, userX));
-          userY = Math.max(20, Math.min(70, userY));
-          userAvatar.style.left = userX + "%";
-          userAvatar.style.bottom = userY + "%";
-        }, 2000);
-      }
-  
-      // Initialize app
-      document.addEventListener("DOMContentLoaded", function () {
-        showToast("🏔️ Welcome to Ghumante Yuwa! Start exploring!");
-        setTimeout(() => {
-          const mascotSpeech = document.querySelector(".mascot-speech");
-          if (mascotSpeech) mascotSpeech.textContent = "Find the QR codes at each location!";
-        }, 2000);
-      });
-  
-      // Keyboard shortcuts for testing
-      document.addEventListener("keydown", function (e) {
-        if (document.getElementById("popupOverlay").style.display === "flex") {
-          if (e.key >= "1" && e.key <= "5") {
-            // Simulate QR scan for testing
-            handleQRSuccess();
-          } else if (e.key === "Escape") {
-            closePopup();
-          }
+
+      // Reset state variables
+      currentLocation = null;
+      currentAudio = null;
+
+      // Immediately restore map interactivity
+      mainScreen.style.display = "flex";
+      mainScreen.style.opacity = "1";
+      mainScreen.style.zIndex = "1";
+      mainScreen.style.pointerEvents = "auto";
+      mapContainer.style.display = "block";
+      mapContainer.style.opacity = "1";
+      mapContainer.style.pointerEvents = "auto";
+
+      // Hide overlay immediately
+      popupOverlay.style.display = "none";
+      popupOverlay.style.opacity = "0";
+      popupOverlay.style.pointerEvents = "none";
+
+      // Handle popup animation
+      popup.classList.remove("show");
+
+      // Reset UI state after animation
+      setTimeout(() => {
+        resetScanUI();
+        document.getElementById("qrScanner").style.display = "block";
+        document.getElementById("contentView").classList.remove("show");
+        document.getElementById("rewardsSection").classList.remove("show");
+        document.getElementById("closeBtn").style.display = "inline-block";
+      }, 300);
+    }
+
+    function showToast(message) {
+      const existing = document.querySelector(".toast");
+      if (existing) existing.remove();
+
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.style.zIndex = "2000"; // Ensure toast doesn't block map
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      setTimeout(() => toast.classList.add("show"), 100);
+      setTimeout(() => {
+        toast.classList.remove("show");
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Avatar animation
+    let userX = 50, userY = 40;
+    const userAvatar = document.querySelector(".user-avatar");
+    if (userAvatar) {
+      setInterval(() => {
+        userX += (Math.random() - 0.5) * 4;
+        userY += (Math.random() - 0.5) * 3;
+        userX = Math.max(15, Math.min(85, userX));
+        userY = Math.max(20, Math.min(70, userY));
+        userAvatar.style.left = userX + "%";
+        userAvatar.style.bottom = userY + "%";
+      }, 2000);
+    }
+
+    // Initialize app
+    document.addEventListener("DOMContentLoaded", function () {
+      // Ensure initial interactivity
+      const mainScreen = document.querySelector(".main-screen");
+      const mapContainer = document.querySelector(".map-container");
+      mainScreen.style.display = "flex";
+      mainScreen.style.opacity = "1";
+      mainScreen.style.zIndex = "1";
+      mainScreen.style.pointerEvents = "auto";
+      mapContainer.style.display = "block";
+      mapContainer.style.opacity = "1";
+      mapContainer.style.pointerEvents = "auto";
+
+      showToast("🏔️ Welcome to Ghumante Yuwa! Start exploring!");
+      setTimeout(() => {
+        const mascotSpeech = document.querySelector(".mascot-speech");
+        if (mascotSpeech) mascotSpeech.textContent = "Find the QR codes at each location!";
+      }, 2000);
+    });
+
+    // Keyboard shortcuts for testing
+    document.addEventListener("keydown", function (e) {
+      if (document.getElementById("popupOverlay").style.display === "flex") {
+        if (e.key >= "1" && e.key <= "5") {
+          // Simulate QR scan for testing
+          handleQRSuccess();
+        } else if (e.key === "Escape") {
+          closePopup();
         }
-      });
-  
-      // Close popup when clicking overlay
-      document.getElementById("popupOverlay").addEventListener("click", function (e) {
-        if (e.target === this) closePopup();
-      });
-    </script>
+      }
+    });
+
+    // Close popup when clicking overlay
+    document.getElementById("popupOverlay").addEventListener("click", function (e) {
+      if (e.target === this) closePopup();
+    });
+  </script>
 </body>
 </html>
